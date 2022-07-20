@@ -39,28 +39,29 @@ export default function TextForm(props) {
 
     return (
         <>
-            <div className='container'>
+            <div className='container' style={{ color: props.mode === "light" ? "black" : "white" }}>
 
                 <h1>{props.heading}</h1>
 
                 <div className="mb-3">
-                    <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+                    <textarea className="form-control" style={{ background: props.mode === "light" ? "white" : "grey", color: props.mode === "light" ? "black" : "white" }} value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
                 </div>
 
-                <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
-                <button className="btn btn-primary mx-1" onClick={handleLowClick}>Convert to Lowercase</button>
-                <button className="btn btn-primary mx-1" onClick={handleClrClick}>Clear Text</button>
-                <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
-                <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+                <button className={`btn btn-${props.mode === "light" ? "primary" : "dark"} mx-1`} onClick={handleUpClick}>Convert to Uppercase</button>
+                <button className={`btn btn-${props.mode === "light" ? "primary" : "dark"} mx-1`} onClick={handleLowClick}>Convert to Lowercase</button>
+                <button className={`btn btn-${props.mode === "light" ? "primary" : "dark"} mx-1`} onClick={handleClrClick}>Clear Text</button>
+                <button className={`btn btn-${props.mode === "light" ? "primary" : "dark"} mx-1`} onClick={handleCopy}>Copy Text</button>
+                <button className={`btn btn-${props.mode === "light" ? "primary" : "dark"} mx-1`} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
 
             </div>
-            
-            <div className="container my-3">
+
+            <div className="container my-3" style={{ color: props.mode === "light" ? "black" : "white" }}>
                 <h2>Your text summary</h2>
                 <p><b>{text.split(" ").length}</b> Words and <b>{text.length}</b> Characters</p>
-                <p><b>{0.008*text.split(" ").length}</b> Minutes Read</p>
+                <p><b>{0.008 * text.split(" ").length}</b> Minutes Read</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                {/* <p>{text.length > 0 ? text : "Enter something in the textbox above to preview it here."}</p> */}
+                <p style={{whiteSpace: "pre-line"}}>{text}</p>
             </div>
         </>
     )
