@@ -6,15 +6,20 @@ export default function TextForm(props) {
         // console.log("Up case");
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to uppercase!", "success");
     }
 
     const handleLowClick = () => {
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to lowercase!", "success");
+
     }
 
     const handleClrClick = () => {
         setText("");
+        props.showAlert("Text Cleared!", "success");
+
     }
 
     const handleOnChange = (event) => {
@@ -26,11 +31,14 @@ export default function TextForm(props) {
         let tArea = document.getElementById("myBox");
         tArea.select();
         navigator.clipboard.writeText(tArea.value);
+        props.showAlert("Copied to Clipboard!", "success");
     }
 
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra spaces removed!", "success");
+
     }
 
     const [text, setText] = useState("");
@@ -57,11 +65,10 @@ export default function TextForm(props) {
 
             <div className="container my-3" style={{ color: props.mode === "light" ? "black" : "white" }}>
                 <h2>Your text summary</h2>
-                <p><b>{text.split(" ").length}</b> Words and <b>{text.length}</b> Characters</p>
-                <p><b>{0.008 * text.split(" ").length}</b> Minutes Read</p>
+                <p><b>{(text.split(" ")).filter(element => element !== '').length}</b> Words and <b>{text.length}</b> Characters</p>
+                <p><b>{(0.008 * (text.split(" ")).filter(element => element !== '').length).toFixed(2)}</b> Minutes Read</p>
                 <h2>Preview</h2>
-                {/* <p>{text.length > 0 ? text : "Enter something in the textbox above to preview it here."}</p> */}
-                <p style={{whiteSpace: "pre-line"}}>{text}</p>
+                <p style={{ whiteSpace: "pre" }}>{text.length > 0 ? text : "Enter something in the textbox above to preview it here."}</p>
             </div>
         </>
     )
