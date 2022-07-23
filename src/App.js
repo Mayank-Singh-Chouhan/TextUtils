@@ -5,10 +5,11 @@ import TextForm from './components/TextForm';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
 import {
-  BrowserRouter as Router,
+  HashRouter,
   Route,
   Routes
 } from "react-router-dom";
+// import { HashRouter } from 'react-router-dom';
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
 
       {/* <Navbar title = "TextUtil" aboutText = "About TextUtils"/> */}
       {/* <Navbar/> */}
-      <Router>
+      <HashRouter>
 
         <Navbar title="TextUtil" mode={mode} toggleMode={toggleMode} />
 
@@ -65,7 +66,7 @@ function App() {
 
         </div>
 
-      </Router>
+      </HashRouter>
 
     </>
   );
