@@ -69,7 +69,7 @@ export default function TextForm(props) {
                 <p><b>{(text.split(/\s+/)).filter(element => element !== '').length}</b> Words and <b>{text.length}</b> Characters</p>
                 <p><b>{(0.008 * (text.split(/\s+/)).filter(element => element !== '').length).toFixed(2)}</b> Minutes Read</p>
                 <h2>Preview</h2>
-                <p style={{ whiteSpace: "pre" }}><b>{text.length > 0 ? text : "Enter something in the textbox above to preview it here."}</b></p>
+                <p style={{ whiteSpace: "pre", width: "70vw", height: "70vh", overflow: "auto", border: "1px solid", borderRadius: "3px" }}>{text}</p>
             </div>
         </>
     )
